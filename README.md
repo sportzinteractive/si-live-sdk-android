@@ -1,4 +1,4 @@
-# Brightcove Live Streaming SDK for Android
+# Live Streaming SDK for Android
 
 A native Android SDK built with Jetpack Compose that provides a single, embeddable live streaming screen powered by Brightcove.
 
@@ -24,7 +24,7 @@ A native Android SDK built with Jetpack Compose that provides a single, embeddab
 
 ### Using the AAR File
 
-To use the Brightcove Live Streaming SDK, you need to add the AAR file to your project and configure the required dependencies.
+To use the Live Streaming SDK, you need to add the AAR file to your project and configure the required dependencies.
 
 #### Step 1: Add the AAR File
 
