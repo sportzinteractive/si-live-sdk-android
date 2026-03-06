@@ -22,44 +22,13 @@ A native Android SDK built with Jetpack Compose that provides a single, embeddab
 
 ## Installation
 
-### Using the AAR File
+### Using Maven Repository
 
-To use the Live Streaming SDK, you need to add the AAR file to your project and configure the required dependencies.
+To use the Live Streaming SDK, add the Maven repository to your project and include the dependency.
 
-#### Step 1: Add the AAR File
+#### Step 1: Configure settings.gradle.kts
 
-1. Copy the `SILiveSdk.aar` file to your project's `libs` folder (create the folder if it doesn't exist):
-   ```
-   your-project/
-   └── app/
-       └── libs/
-           └── SILiveSdk.aar
-   ```
-
-#### Step 2: Configure Project-Level Gradle
-
-Add the Brightcove Maven repository and flatDir configuration to your **project-level** `build.gradle.kts` (or `build.gradle`):
-
-```kotlin
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        
-        // Brightcove Maven repository
-        maven {
-            url = uri("https://repo.brightcove.com/releases")
-        }
-        
-        // Local AAR files
-        flatDir {
-            dirs("libs")
-        }
-    }
-}
-```
-
-Or if using `settings.gradle.kts`:
+Add the Maven repository to your `settings.gradle.kts`:
 
 ```kotlin
 dependencyResolutionManagement {
@@ -67,43 +36,31 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        
-        // Brightcove Maven repository
+        // Replace '1.0.1' with the specific version needed
+        maven { 
+            url = uri("https://raw.githubusercontent.com/sportzinteractive/si-live-sdk-android/main-maven/releases/1.0.1") 
+        }
         maven {
             url = uri("https://repo.brightcove.com/releases")
-        }
-        
-        // Local AAR files
-        flatDir {
-            dirs("libs")
         }
     }
 }
 ```
 
-#### Step 3: Configure App-Level Gradle
+#### Step 2: Configure app/build.gradle.kts
 
-Add the following dependencies to your **app-level** `build.gradle.kts` (or `build.gradle`):
+Add the SDK dependency to your `app/build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    // AAR file
-    implementation(files("libs/SILiveSdk.aar"))
-    
-    // Required dependency - CRITICAL!
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
-    
-    // Brightcove SDK
-    implementation("com.brightcove.player:exoplayer2:8.3.0")
-    
-    // Your other dependencies...
+    // Replace '1.0.1' with the specific version needed
+    implementation("com.sportzinteractive:si-live-sdk:1.0.1")
 }
 ```
 
-**Important Notes:**
-- The `lifecycle-viewmodel-compose` dependency is **CRITICAL** and must be included
-- The Brightcove Maven repository is required for the Brightcove SDK dependency
-- The `flatDir` configuration allows Gradle to find the AAR file in the `libs` folder
+#### Step 3: Sync Project
+
+Sync your project with Gradle files to download the dependency.
 
 ## Quick Start
 
