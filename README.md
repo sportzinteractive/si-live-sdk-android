@@ -36,9 +36,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        // Replace '1.0.2' with the specific version needed
+        // Replace '1.0.5' with the specific version needed
         maven { 
-            url = uri("https://raw.githubusercontent.com/sportzinteractive/si-live-sdk-android/main-maven/releases/1.0.2") 
+            url = uri("https://raw.githubusercontent.com/sportzinteractive/si-live-sdk-android/main-maven/releases/1.0.5") 
         }
         maven {
             url = uri("https://repo.brightcove.com/releases")
@@ -52,9 +52,13 @@ dependencyResolutionManagement {
 Add the SDK dependency to your `app/build.gradle.kts`:
 
 ```kotlin
+compileOptions {
+    isCoreLibraryDesugaringEnabled = true
+}
 dependencies {
-    // Replace '1.0.2' with the specific version needed
-    implementation("com.sportzinteractive:si-live-sdk:1.0.2")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+    // Replace '1.0.5' with the specific version needed
+    implementation("com.sportzinteractive:si-live-sdk:1.0.5")
 }
 ```
 
