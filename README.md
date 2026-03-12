@@ -36,9 +36,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        // Replace '1.0.5' with the specific version needed
+        // Replace '1.0.6' with the specific version needed
         maven { 
-            url = uri("https://raw.githubusercontent.com/sportzinteractive/si-live-sdk-android/main-maven/releases/1.0.5") 
+            url = uri("https://raw.githubusercontent.com/sportzinteractive/si-live-sdk-android/main-maven/releases/1.0.6") 
         }
         maven {
             url = uri("https://repo.brightcove.com/releases")
@@ -57,8 +57,8 @@ compileOptions {
 }
 dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
-    // Replace '1.0.5' with the specific version needed
-    implementation("com.sportzinteractive:si-live-sdk:1.0.5")
+    // Replace '1.0.6' with the specific version needed
+    implementation("com.sportzinteractive:si-live-sdk:1.0.6")
 }
 ```
 
@@ -106,8 +106,8 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     LiveStreamScreen(
-                        eventType = EventType.camera,  // or EventType.mobile
-                        environment = Environment.nonProd,  // or Environment.prod
+                        eventType = EventType.broadcast,  // or EventType.mobile
+                        environment = Environment.dev,  // or Environment.prod / Environment.preview
                         locales = "en",  // Locale identifier (e.g., "en", "hi", "it")
                         modifier = Modifier.fillMaxSize(),
                         onBackButtonClick = { clicked ->
@@ -132,8 +132,8 @@ class MainActivity : ComponentActivity() {
 The main public composable for displaying live streams.
 
 **Parameters:**
-- `eventType: EventType` - `EventType.camera` or `EventType.mobile` (required, determines credentials)
-- `environment: Environment` - `Environment.prod` or `Environment.nonProd` (required, determines credentials)
+- `eventType: EventType` - `EventType.broadcast` or `EventType.mobile` (required, determines credentials)
+- `environment: Environment` - `Environment.prod` or `Environment.preview` or `Environment.dev (required, determines credentials)
 - `locales: String` - Locale identifier (required, e.g., `"en"`, `"hi"`, `"it"`)
 - `modifier: Modifier` - Modifier for the composable (required)
 - `onBackButtonClick: ((Boolean) -> Unit)?` - Optional callback when user taps back button. Receives a boolean indicating if back was clicked.
@@ -142,8 +142,8 @@ The main public composable for displaying live streams.
 **Example:**
 ```kotlin
 LiveStreamScreen(
-    eventType = EventType.camera,
-    environment = Environment.prod,
+    eventType = EventType.broadcast,
+    environment = Environment.dev,
     locales = "en",
     modifier = Modifier.fillMaxSize(),
     onBackButtonClick = { clicked ->
